@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -38,10 +39,32 @@ public class MoviesAdapter extends ArrayAdapter<Movies> {
         Movies currentMovie = getItem(position);
 
         // Image view reference, the movie poster will be placed here
-        ImageView imageView = (ImageView) gridItem.findViewById(R.id.grid_item_imageView);
+        final ImageView posterImageView = (ImageView) gridItem.findViewById(R.id.grid_item_imageView);
 
         // Downloads movie poster image and places in the respective imageView
-        Picasso.with(getContext()).load(currentMovie.getPosterUrl()).into(imageView);
+        Picasso.with(getContext())
+                .load(currentMovie.getPosterUrl())
+                .error(R.drawable.image_placeholder)
+                .into(posterImageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                        // Check if image was successfully loaded into imageView,
+                        // if not, set image not available placeholder. I Did not use
+                        // the Picasso .placeholder() method to avoid displaying the
+                        // placeholder while loading in background
+                        if (posterImageView.getDrawable() == null) {
+                            posterImageView.setImageDrawable(getContext().getResources()
+                                    .getDrawable(R.drawable.image_placeholder));
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+
 
         // Bundle includes the movie info that will be sent to the details activity trough intent
         final Bundle bundle = new Bundle();
