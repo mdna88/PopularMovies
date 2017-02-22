@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:columnWidth="@dimen/grid_view_column"
             android:gravity="center"
-            android:numColumns="2"
+            android:numColumns="@integer/grid_view_columns"
             android:scrollbars="vertical"
             android:stretchMode="columnWidth"
             />
@@ -24,8 +24,8 @@
             android:id="@+id/empty_element"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerInParent="true"
+            android:gravity="center"
             android:text="@string/gridView_empty_view"
             android:textSize="@dimen/empty_view_text"
             android:visibility="gone"/>

@@ -5,7 +5,8 @@
     <dimen name="detail_layout_vertical_margin">8dp</dimen>
 
     <!-- Custom view sizes. -->
-    <dimen name="detail_poster_size">156dp</dimen>
+    <dimen name="detail_poster_height">156dp</dimen>
+    <dimen name="detail_poster_width">96dp</dimen>
     <dimen name="detail_divider">1dp</dimen>
     <dimen name="grid_item_vertical">288dp</dimen>
     <dimen name="grid_view_column">184dp</dimen>

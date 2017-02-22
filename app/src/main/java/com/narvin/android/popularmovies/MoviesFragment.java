@@ -17,8 +17,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static android.R.attr.data;
-
 
 /**
  * Movies fragment that displays a gridView of movies fetched from the MoviesDB WEB API
@@ -27,6 +25,7 @@ public class MoviesFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<ArrayList<Movies>> {
 
     private TextView emptyView;
+    private GridView gridView;
 
     // Required empty public constructor
     public MoviesFragment() {
@@ -49,6 +48,7 @@ public class MoviesFragment extends Fragment implements
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        gridView = (GridView) getActivity().findViewById(R.id.movie_gridView);
         emptyView = (TextView) getActivity().findViewById(R.id.empty_element);
         fetchMoviesFromWeb();
     }
@@ -98,7 +98,6 @@ public class MoviesFragment extends Fragment implements
             if (getActivity() != null) {
 
                 MoviesAdapter adapter = new MoviesAdapter(getActivity(), moviesList);
-                final GridView gridView = (GridView) getActivity().findViewById(R.id.movie_gridView);
                 gridView.setEmptyView(emptyView);
                 gridView.setAdapter(adapter);
             }
